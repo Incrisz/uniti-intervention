@@ -71,7 +71,9 @@ def llm_select_intervention(usage_data: UsageDataRequest):
   interventionIds, appIds = llm_intervention(usage_data.model_dump())
   # message_content = get_all_messages(interventionIds)
   # result = fill_message_templates(message_content, appIds, usage_data.model_dump())
-  result = zip(interventionIds, appIds)
+  result = []
+  for a,b in zip(interventionIds, appIds):
+    result.append({"interventionaId": a, "appId": b})
   result = result if result else None
 
   return {"success": True, "result": result}
